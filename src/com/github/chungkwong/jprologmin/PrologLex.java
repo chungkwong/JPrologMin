@@ -196,10 +196,9 @@ public class PrologLex implements SimpleIterator<Object>{
 		unreadIfNotEOF(start);
 		if(Character.isUpperCase(buf.charAt(0))){
 			return new Variable(buf.toString());
-		}else if(Character.isLowerCase(buf.charAt(0))){
+		}else{
 			return buf.toString();
-		}else
-			throw new LexicalException("Identifier token or named variable expected");
+		}
 	}
 	private BigInteger getInteger(int base) throws IOException{
 		StringBuilder buf=new StringBuilder();
