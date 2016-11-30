@@ -81,6 +81,10 @@ public class Processor{
 			}catch(PrologException ex){
 				raise(ex);
 			}
+			if(Thread.interrupted()){
+				stack.clear();
+				break;
+			}
 		}
 		//if(i==MAX_ITERATOR_COUNT)
 		//	throw new RuntimeException("Iteration reach limit");
