@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Chan Chung Kwong <1m02math@126.com>
+ * Copyright (C) 2015,2016 Chan Chung Kwong <1m02math@126.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -229,11 +229,14 @@ public class Database{
 	 */
 	public void addPredication(Predication pred){
 		Predicate predicate=pred.getPredicate();
-		if(directives.containsKey(predicate))
-			directives.get(predicate).process(pred.getArguments(),this);
-		else if(predicate.getFunctor().equals(":-"))
-			addClauseToLast(new Clause((Predication)pred.getArguments().get(0),(Predication)pred.getArguments().get(1)));
-		else
+		if(predicate.getFunctor().equals(":-")){
+			if(pred.getArguments().size()==1){
+				pred=(Predication)pred.getArguments().get(0);
+				directives.get(pred.getPredicate()).process(pred.getArguments(),this);
+			}else{
+				addClauseToLast(new Clause((Predication)pred.getArguments().get(0),(Predication)pred.getArguments().get(1)));
+			}
+		}else
 			addClauseToLast(new Clause(pred,new Constant("true")));
 	}
 	/**

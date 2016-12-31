@@ -56,13 +56,8 @@ public class PrologConsole implements Shell{
 					buf.append(ex).append('\n');
 					ex.printStackTrace();
 				}
-			}else if(pred.getPredicate().getFunctor().equals(":-")){
-				db.addClauseToLast(new Clause((Predication)pred.getArguments().get(0),
-						(Predication)pred.getArguments().get(1)));
-				buf.append("Rule added\n");
 			}else{
-				db.addClauseToLast(new Clause(pred,new Constant("true")));
-				buf.append("Fact added\n");
+				db.addPredication(pred);
 			}
 		}
 		return buf.toString();

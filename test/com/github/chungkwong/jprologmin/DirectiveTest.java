@@ -23,21 +23,21 @@ import org.junit.*;
 public class DirectiveTest extends ProcessorTest{
 	@Test
 	public void testCharConversion(){
-		assertGoalSuccess("X is 2+3,X=:=6 .","char_conversion('+','*').");
+		assertGoalSuccess("X is 2+3,X=:=6 .",":-char_conversion('+','*').");
 	}
 	@Test
 	public void testDiscontigous(){
-		assertGoalSuccess("insect(ann).","discontiguous(insect/1).insect(ann).");
-		assertGoalSuccess("insect(ann).","cat.discontiguous(insect/1).discontiguous(insect/1).insect(ann).");
+		assertGoalSuccess("insect(ann).",":-discontiguous(insect/1).insect(ann).");
+		assertGoalSuccess("insect(ann).","cat. :-discontiguous(insect/1). :-discontiguous(insect/1).insect(ann).");
 	}
 	@Test
 	public void testDynamic(){
-		assertGoalSuccess("clause(cat,true).","dynamic(cat/0).cat.");
+		assertGoalSuccess("clause(cat,true).",":-dynamic(cat/0).cat.");
 		assertGoalError("clause(cat,true).","cat.");
 	}
 	@Test
 	public void testEnsureLoaded(){
-		String load="ensure_loaded('test/com/github/chungkwong/jprologmin/IncludeTest.prolog').";
+		String load=":-ensure_loaded('test/com/github/chungkwong/jprologmin/IncludeTest.prolog'). ";
 		assertGoalSuccess("dog.",load);
 		assertGoalSuccess("double(3,Y),Y=:=6 .",load);
 		assertGoalSuccess("double(3,Y),Y=:=6 .",load+load);
@@ -46,18 +46,18 @@ public class DirectiveTest extends ProcessorTest{
 	}
 	@Test
 	public void testInclude(){
-		String load="include('test/com/github/chungkwong/jprologmin/IncludeTest.prolog').";
+		String load=":-include('test/com/github/chungkwong/jprologmin/IncludeTest.prolog'). ";
 		assertGoalSuccess("dog.",load);
 		assertGoalSuccess("double(3,Y),Y=:=6 .",load);
-		assertGoalSuccess("double(3,Y),Y=:=9 .",load+load);
+		assertGoalSuccess("findall(Y,double(3,Y),[6,9]) .",load+load);
 		assertGoalError("dog.","");
 	}
 	@Test
 	public void testInitialization(){
-		assertGoalFail("dog.","initialization(set_prolog_flag(undefined_predicate,fail)).");
+		assertGoalFail("dog.",":-initialization(set_prolog_flag(undefined_predicate,fail)).");
 		assertGoalError("dog.","");
 		try{
-			assertGoalFail("dog.","initialization(4).");
+			assertGoalFail("dog.",":-initialization(4).");
 		}catch(Throwable t){
 			return;
 		}
@@ -65,13 +65,13 @@ public class DirectiveTest extends ProcessorTest{
 	}
 	@Test
 	public void testMultiFile(){
-		assertGoalSuccess("insect(ann).","multifile(insect/1).insect(ann).");
-		assertGoalSuccess("insect(ann).","cat.multifile(insect/1).multifile(insect/1).insect(ann).");
+		assertGoalSuccess("insect(ann).",":-multifile(insect/1).insect(ann).");
+		assertGoalSuccess("insect(ann).","cat. :-multifile(insect/1). :-multifile(insect/1).insect(ann).");
 	}
 	@Test
 	public void testOp(){
-		assertGoalSuccess("X is 2+3*4,X=:=20 .","op(400,yfx,'+').");
-		assertGoalSuccess("X is 2+3*4,X=:=20 .","op(500,yfx,'*').");
-		assertGoalSuccess("X is 2**2**3,X=:=64 .","op(200,yfx,'**').");
+		assertGoalSuccess("X is 2+3*4,X=:=20 .",":-op(400,yfx,'+').");
+		assertGoalSuccess("X is 2+3*4,X=:=20 .",":-op(500,yfx,'*').");
+		assertGoalSuccess("X is 2**2**3,X=:=64 .",":-op(200,yfx,'**').");
 	}
 }
