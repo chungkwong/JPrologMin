@@ -7,7 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="JPrologMin" default="default" basedir=".">
+<project name="JPrologMin" default="default" basedir="." 
+		 xmlns:ivy="antlib:org.apache.ivy.ant">
     <description>Builds, tests, and runs the project JPrologMin.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
@@ -69,5 +70,67 @@
     properties which you can use, check the target you are overriding in the
     nbproject/build-impl.xml file. 
 
-    -->
+    -->	
+	<target name="-pre-compile" depends="resolve">
+	</target>
+	<property name="ivy.install.version" value="2.4.0"/>
+	<property name="ivy.jar.dir" value="ivy"/>
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
+	<target name="check-for-ivy">
+        <available property="ivy.downloaded" file="${ivy.jar.file}"/>
+    </target>
+	<target name="download-ivy" depends="check-for-ivy" unless="ivy.downloaded">
+		<mkdir dir="${ivy.jar.dir}"/>
+		<get src="http://central.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+		<get src="http://www.bouncycastle.org/download/bcpg-jdk15on-159.jar" dest="${ivy.jar.dir}/bcpg-jdk15on-159.jar" usetimestamp="true"/>
+		<get src="http://www.bouncycastle.org/download/bcprov-jdk15on-159.jar" dest="${ivy.jar.dir}/bcprov-jdk15on-159.jar" usetimestamp="true"/>
+	</target>
+	<target name="install-ivy" depends="download-ivy">
+		<path id="ivy.lib.path">
+			<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+	</target>
+	<target name="clean-ivy">
+		<delete dir="${ivy.jar.dir}"/>
+	</target>
+	<target name="clean-ivy-cache" depends="install-ivy">
+		<ivy:cleancache/>
+	</target>
+	<target name="resolve" depends="install-ivy">
+        <ivy:retrieve />
+    </target>
+	<property name="deploy" value="dist/deploy"/>
+	<property name="jar" value="${deploy}/jprologmin.jar"/>
+	<property name="javadoc-jar" value="${deploy}/jprologmin-javadoc.jar"/>
+	<property name="sources-jar" value="${deploy}/jprologmin-sources.jar"/>
+	<target name="snapshot" depends="install-ivy,jar">
+		<mkdir dir="${deploy}"/>
+		<copy file="dist/JPrologMin.jar" tofile="${jar}"/>
+		<ivy:makepom ivyfile="ivy.xml" pomfile="${deploy}/pom.xml"/>
+		<ivy:publish resolver="nexus-snapshots"
+						  revision="1.0-SNAPSHOT"
+						  overwrite="true" 
+						  publishivy="false" >
+			<artifacts pattern="${deploy}/[artifact](-[classifier]).[ext]"/>
+		</ivy:publish>
+	</target>
+	
+	<target name="stage" depends="install-ivy,default">
+		<mkdir dir="${deploy}"/>
+		<copy file="dist/JPrologMin.jar" tofile="${jar}"/>
+		<jar jarfile="${sources-jar}">
+			<fileset dir="src"/>
+		</jar>
+		<jar jarfile="${javadoc-jar}">
+			<fileset dir="dist/javadoc"/>
+		</jar>
+		<ivy:makepom ivyfile="ivy.xml" pomfile="${deploy}/pom.xml"/>
+		<ivy:publish resolver="nexus-releases"
+						  revision="1.0"
+						  overwrite="true" 
+						  publishivy="false" >
+			<artifacts pattern="dist/deploy/[artifact](-[classifier]).[ext]"/>
+		</ivy:publish>
+	</target>
 </project>

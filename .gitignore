@@ -2,3 +2,7 @@
 /build/
 /manifest.mf
 /.jacocoverage
+/nbproject/private/
+/lib/
+/ivy/
+/ivysettings.xml
