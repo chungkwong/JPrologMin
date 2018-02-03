@@ -34,10 +34,19 @@ public class SystemException extends RuntimeException{
 	public SystemException(String msg) {
 		super(msg);
 	}
+	/**
+	 * Constructs an instance of <code>SystemException</code>.
+	 * @param cause the cause
+	 */
 	public SystemException(Throwable cause){
 		super(cause);
 	}
-	public SystemException(String message,Throwable cause){
-		super(message,cause);
+	/**
+	 * Constructs an instance of <code>SystemException</code>.
+	 * @param msg the detail message.
+	 * @param cause the cause
+	 */
+	public SystemException(String msg,Throwable cause){
+		super(msg,cause);
 	}
 }

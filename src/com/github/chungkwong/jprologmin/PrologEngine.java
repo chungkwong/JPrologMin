@@ -19,7 +19,7 @@ import java.io.*;
 import java.util.*;
 import javax.script.*;
 /**
- *
+ * Provides implementation for javax.script API
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class PrologEngine extends AbstractScriptEngine{
@@ -72,16 +72,6 @@ public class PrologEngine extends AbstractScriptEngine{
 			exec.reexecute();
 			cache=exec.getSubstitution();
 			return ret;
-		}
-	}
-	public static void main(String[] args) throws ScriptException{
-		PrologEngine prologEngine=new PrologEngine();
-		Scanner in=new Scanner(System.in);
-		while(in.hasNextLine()){
-			Iterator<Substitution> eval=prologEngine.eval(in.nextLine(),(ScriptContext)null);
-			if(eval!=null)
-				while(eval.hasNext())
-					System.out.println(eval.next().toStringUser());
 		}
 	}
 }

@@ -17,7 +17,7 @@
 package com.github.chungkwong.jprologmin.constructs;
 import com.github.chungkwong.jprologmin.*;
 /**
- *
+ * Implementation of the control construct fail/0
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Fail extends ControlConstruct{

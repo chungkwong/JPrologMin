@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.directive;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the directive initialization/1
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Initialization implements Directive{

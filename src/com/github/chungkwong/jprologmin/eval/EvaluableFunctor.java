@@ -17,19 +17,32 @@
 package com.github.chungkwong.jprologmin.eval;
 import java.util.*;
 /**
- *
+ * Represents the form of a operator
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class EvaluableFunctor{
 	private final String functor;
 	private final int arity;
+	/**
+	 * Create a form for a operator
+	 * @param functor the name of the operator
+	 * @param arity the number of arguments that the operator takes
+	 */
 	public EvaluableFunctor(String functor,int arity){
 		this.functor=functor;
 		this.arity=arity;
 	}
+	/**
+	 * Get the name of the operator
+	 * @return the name
+	 */
 	public String getFunctor(){
 		return functor;
 	}
+	/**
+	 * Get the number of arguments that the operator takes
+	 * @return the number
+	 */
 	public int getArity(){
 		return arity;
 	}

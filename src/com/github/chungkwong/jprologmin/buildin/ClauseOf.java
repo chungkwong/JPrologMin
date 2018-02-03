@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.buildin;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the predicate clause/2
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class ClauseOf extends ReexecutableBuildinPredicate{

@@ -19,7 +19,7 @@ import com.github.chungkwong.jprologmin.*;
 import java.io.*;
 import java.util.*;
 /**
- *
+ * Implementation of the directive ensure_loaded/1
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class EnsureLoaded implements Directive{

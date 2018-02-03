@@ -44,12 +44,21 @@ public class Flag{
 		else
 			throw new DomainException(domain,value);
 	}
+	/**
+	 * @return the name of the flag
+	 */
 	public String getName(){
 		return name;
 	}
+	/**
+	 * @return the value  of the flag
+	 */
 	public Term getValue(){
 		return value;
 	}
+	/**
+	 * @return the checker
+	 */
 	public Predicate getChecker(){
 		return checker;
 	}
@@ -63,6 +72,9 @@ public class Flag{
 		else
 			throw new DomainException(domain,new CompoundTerm("+",new Constant(name),value));
 	}
+	/**
+	 * @return the flag can be set
+	 */
 	public boolean isChangeable(){
 		return changeable;
 	}

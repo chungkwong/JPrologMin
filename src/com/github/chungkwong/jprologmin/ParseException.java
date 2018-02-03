@@ -34,6 +34,10 @@ public class ParseException extends PrologException{
 	public ParseException(String msg) {
 		super(msg);
 	}
+	/**
+	 * Constructs an instance of <code>ParseException</code> with the specified detail message.
+	 * @param cause the cause
+	 */
 	public ParseException(Throwable cause){
 		super(cause);
 	}

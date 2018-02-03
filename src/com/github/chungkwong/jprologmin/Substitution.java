@@ -54,13 +54,19 @@ public class Substitution{
 		}
 		return obj;
 	}
-	protected boolean addEquation(Variable var,Term val){
+	boolean addEquation(Variable var,Term val){
 		assignment.put(var,val);
 		assignment.entrySet().stream().forEach((entry)->{
 			entry.setValue(entry.getValue().substitute(var,val));
 		});
 		return true;
 	}
+	/**
+	 * Add a equation
+	 * @param var the variable
+	 * @param val the value of that variable
+	 * @return if the variable can be assigned
+	 */
 	public boolean assign(Variable var,Term val){
 		Term root=findRoot(var);
 		val=val.substitute(this);

@@ -3,7 +3,7 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation=
                    "http://ant.apache.org/ivy/schemas/ivy.xsd">
-	<info organisation="com.github.chungkwong" module="jprologmin" revision="1.0-SNAPSHOT">
+	<info organisation="com.github.chungkwong" module="jprologmin" revision="1.0">
 		<license name="GNU GENERAL PUBLIC LICENSE, Version 3" url="https://www.gnu.org/licenses/gpl.txt"/>
 		<ivyauthor name="chungkwong" url="https://github.com/chungkwong"/>
 		<repository name="github" url="https://github.com/chungkwong/JPrologMin.git"/>

@@ -51,7 +51,7 @@ public class PrologParser implements SimpleIterator<Predication>{
 	 * @return the remaining prolog text
 	 */
 	public List<Predication> getRemaining(){
-		ArrayList<Predication> lst=new ArrayList<>();
+		List<Predication> lst=new LinkedList<>();
 		Predication pred=next();
 		while(pred!=null){
 			lst.add(pred);

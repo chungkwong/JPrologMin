@@ -76,14 +76,11 @@
 	<property name="ivy.install.version" value="2.4.0"/>
 	<property name="ivy.jar.dir" value="ivy"/>
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
-	<target name="check-for-ivy">
-        <available property="ivy.downloaded" file="${ivy.jar.file}"/>
-    </target>
-	<target name="download-ivy" depends="check-for-ivy" unless="ivy.downloaded">
+	<target name="download-ivy">
 		<mkdir dir="${ivy.jar.dir}"/>
 		<get src="http://central.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
-		<get src="http://www.bouncycastle.org/download/bcpg-jdk15on-159.jar" dest="${ivy.jar.dir}/bcpg-jdk15on-159.jar" usetimestamp="true"/>
-		<get src="http://www.bouncycastle.org/download/bcprov-jdk15on-159.jar" dest="${ivy.jar.dir}/bcprov-jdk15on-159.jar" usetimestamp="true"/>
+		<get src="http://central.maven.org/maven2/org/bouncycastle/bcpg-jdk14/1.45/bcpg-jdk14-1.45.jar" dest="${ivy.jar.dir}/bcbcpg-jdk14-1.45.jar" usetimestamp="true"/>
+		<get src="http://central.maven.org/maven2/org/bouncycastle/bcprov-jdk14/1.45/bcprov-jdk14-1.45.jar" dest="${ivy.jar.dir}/bcprov-jdk14-1.45.jar" usetimestamp="true"/>
 	</target>
 	<target name="install-ivy" depends="download-ivy">
 		<path id="ivy.lib.path">
@@ -109,10 +106,10 @@
 		<copy file="dist/JPrologMin.jar" tofile="${jar}"/>
 		<ivy:makepom ivyfile="ivy.xml" pomfile="${deploy}/pom.xml"/>
 		<ivy:publish resolver="nexus-snapshots"
-						  revision="1.0-SNAPSHOT"
+						  revision="1.0"
 						  overwrite="true" 
 						  publishivy="false" >
-			<artifacts pattern="${deploy}/[artifact](-[classifier]).[ext]"/>
+			<artifacts pattern="${deploy}/[artifact].[ext]"/>
 		</ivy:publish>
 	</target>
 	
@@ -130,7 +127,11 @@
 						  revision="1.0"
 						  overwrite="true" 
 						  publishivy="false" >
-			<artifacts pattern="dist/deploy/[artifact](-[classifier]).[ext]"/>
+			<artifacts pattern="${deploy}/[artifact](-[classifier]).[ext]"/>
+			<artifact name="pom" ext="xml" type="ivy" />
+			<artifact name="jprologmin" ext="jar" type="jar"/>
+			<artifact name="jprologmin" ext="jar" type="sources" classifier="sources" />
+			<artifact name="jprologmin" ext="jar" type="javadoc" classifier="javadoc" />
 		</ivy:publish>
 	</target>
 </project>

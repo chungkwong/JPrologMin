@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Chan Chung Kwong <1m02math@126.com>
+ * Copyright (C) 2016,2018 Chan Chung Kwong <1m02math@126.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 package com.github.chungkwong.jprologmin;
 import com.github.chungkwong.swingconsole.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.*;
 /**
  * A simple console to Prolog processor
@@ -25,8 +27,15 @@ import java.util.stream.*;
 public class PrologConsole implements Shell{
 	private final Database db=new Database();
 	private List<Predication> predications;
+	private Processor exec;
+	private String line;
+	private static final String PROMPT="';' for more, 'a' for all, <RET> for exit:\n";
 	@Override
 	public boolean acceptLine(String line){
+		if(exec!=null){
+			this.line=line.trim();
+			return true;
+		}
 		PrologParser parser=db.getParser(line);
 		try{
 			predications=parser.getRemaining();
@@ -38,29 +47,58 @@ public class PrologConsole implements Shell{
 	@Override
 	public String evaluate(){
 		StringBuilder buf=new StringBuilder();
-		for(Predication pred:predications){
+		if(exec!=null){
+			if("".equals(line)){
+			}else if("a".equals(line)){
+				while(reexecute(buf)!=null){
+					
+				}
+			}else if(";".equals(line)){
+				if(reexecute(buf)!=null)
+					return buf.append(PROMPT).toString();
+			}else{
+				return PROMPT;
+			}
+			line=null;
+			exec=null;
+		}
+		if(!predications.isEmpty()){
+			Predication pred=predications.remove(0);
 			if(pred.getPredicate().getFunctor().equals("?-")){
 				try{
-					Processor exec=new Processor((Predication)pred.getArguments().get(0),db);
+					exec=new Processor((Predication)pred.getArguments().get(0),db);
 					Substitution subst=exec.getSubstitution();
-					if(subst==null)
+					if(subst==null){
 						buf.append("Gaol failed\n");
-					else{
-						while(subst!=null){
-							buf.append(subst.toStringUser()).append('\n');
-							exec.reexecute();
-							subst=exec.getSubstitution();
-						}
+						exec=null;
+					}else{
+						buf.append(subst.toStringUser()).append('\n').append(PROMPT);
 					}
 				}catch(Exception ex){
 					buf.append(ex).append('\n');
-					ex.printStackTrace();
+					Logger.getGlobal().log(Level.SEVERE,"",ex);
 				}
 			}else{
 				db.addPredication(pred);
 			}
 		}
 		return buf.toString();
+	}
+	private Substitution reexecute(StringBuilder buf){
+		try{
+			exec.reexecute();
+			Substitution subst=exec.getSubstitution();
+			if(subst==null){
+				buf.append("No more\n");
+			}else{
+				buf.append(subst.toStringUser()).append('\n');
+			}
+			return subst;
+		}catch(Exception ex){
+			buf.append(ex).append('\n');
+			Logger.getGlobal().log(Level.SEVERE,"",ex);
+			return null;
+		}
 	}
 	@Override
 	public List<String> getHints(String prefix){

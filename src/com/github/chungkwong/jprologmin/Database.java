@@ -119,6 +119,7 @@ public class Database{
 	}
 	/**
 	 * Construct a prolog database containing the control constructs and buildin predicate
+	 * @param startup the source that provides predicates to be loaded in
 	 */
 	public Database(Reader startup){
 		this(base.procedures);

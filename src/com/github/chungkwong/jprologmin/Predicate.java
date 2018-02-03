@@ -33,9 +33,15 @@ public class Predicate{
 		this.functor=functor;
 		this.arity=arity;
 	}
+	/**
+	 * @return the functor
+	 */
 	public Object getFunctor(){
 		return functor;
 	}
+	/**
+	 * @return the arity
+	 */
 	public int getArity(){
 		return arity;
 	}

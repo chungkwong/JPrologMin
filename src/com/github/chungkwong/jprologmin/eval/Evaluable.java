@@ -18,22 +18,41 @@ package com.github.chungkwong.jprologmin.eval;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Represents operators
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public abstract class Evaluable{
 	private final EvaluableFunctor functor;
+	/**
+	 * Create a operator
+	 * @param functor the form of the operator
+	 */
 	public Evaluable(EvaluableFunctor functor){
 		this.functor=functor;
 	}
+	/**
+	 * Get the form of the operator
+	 * @return
+	 */
 	public EvaluableFunctor getFunctor(){
 		return functor;
 	}
+	/**
+	 * Evaluate a expression 
+	 * @param args the arguments given to this operator
+	 * @return the value
+	 */
 	protected abstract Term evaluate(Object[] args);
+	/**
+	 * Evaluate a expression 
+	 * @param args the arguments given to this operator
+	 * @return the value
+	 * @throws TypeException if some arguments is not constant
+	 */
 	public Term evaluate(List<Term> args){
 		assert args.size()==functor.getArity();
 		if(!args.stream().allMatch((t)->t instanceof Constant))
-			throw new TypeException("constant",args.stream().filter((t)->t instanceof Constant).findFirst().get());
+			throw new TypeException("constant",args.stream().filter((t)->!(t instanceof Constant)).findFirst().get());
 		Object[] arguments=new Object[args.size()];
 		for(int i=0;i<arguments.length;i++)
 			arguments[i]=((Constant)args.get(i)).getValue();

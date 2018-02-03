@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.buildin;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the predicate unify_with_occurs_check/2
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class UnifyWithOccurCheck extends BuildinPredicate{

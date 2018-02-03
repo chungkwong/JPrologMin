@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.buildin;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the predicate findall/3
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class FindAll extends BuildinPredicate{

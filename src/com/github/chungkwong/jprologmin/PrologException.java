@@ -22,11 +22,22 @@ package com.github.chungkwong.jprologmin;
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public abstract class PrologException extends RuntimeException{
+	/**
+	 * Create a Prolog error
+	 */
 	public PrologException(){
 	}
+	/**
+	 * Create a Prolog error
+	 * @param message description
+	 */
 	public PrologException(String message){
 		super(message);
 	}
+	/**
+	 * Create a Prolog error
+	 * @param cause description
+	 */
 	public PrologException(Throwable cause){
 		super(cause);
 	}

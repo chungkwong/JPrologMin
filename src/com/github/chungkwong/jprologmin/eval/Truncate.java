@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.eval;
 import com.github.chungkwong.jprologmin.*;
 import java.math.*;
 /**
- *
+ * Implementation of the operator truncate/1
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Truncate extends Evaluable{

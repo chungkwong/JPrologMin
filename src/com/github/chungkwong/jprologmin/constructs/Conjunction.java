@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.constructs;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the control construct ,/2
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Conjunction extends ControlConstruct{

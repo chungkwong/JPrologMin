@@ -18,7 +18,7 @@
 package com.github.chungkwong.jprologmin.eval;
 import com.github.chungkwong.jprologmin.*;
 /**
- *
+ * Represents exceptions due to arithmetic
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class CalculationException extends PrologException{
@@ -32,9 +32,20 @@ public class CalculationException extends PrologException{
 			this.errorTerm=errorTerm;
 		}
 	}
-	Type type;
+	private final Type type;
+	/**
+	 * Create a exception due to specified reason
+	 * @param type the reason
+	 */
 	public CalculationException(Type type){
 		this.type=type;
+	}
+	/**
+	 * Get the reason of the exception
+	 * @return the reason
+	 */
+	public Type getType(){
+		return type;
 	}
 	@Override
 	public Term getErrorTerm(){

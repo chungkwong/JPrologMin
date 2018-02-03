@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.eval;
 import com.github.chungkwong.jprologmin.*;
 import java.math.*;
 /**
- *
+ * Implementation of the operator sqrt/1
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Sqrt extends Evaluable{

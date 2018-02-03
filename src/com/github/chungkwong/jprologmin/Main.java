@@ -17,22 +17,44 @@
 package com.github.chungkwong.jprologmin;
 import com.github.chungkwong.swingconsole.*;
 import java.awt.*;
+import java.util.Iterator;
+import java.util.Scanner;
+import javax.script.ScriptContext;
 import javax.swing.*;
 /**
- *
+ * The executable program
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Main {
 	/**
-	 * Entry to the GUI for our Prolog processor
-	 * @param args unused
+	 * Entry to the Prolog processor
+	 * @param args --gui for GUI
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception{
-		JFrame f=new JFrame("Console");
-		f.add(new SwingConsole(new PrologConsole()),BorderLayout.CENTER);
-		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setVisible(true);
+		PrologConsole console=new PrologConsole();
+		if(args.length==1&&"--cli".equals(args[0])){
+			Scanner in=new Scanner(System.in);
+			System.out.print("> ");
+			System.out.flush();
+			while(in.hasNextLine()){
+				String line=in.nextLine();
+				while(!console.acceptLine(line)){
+					System.out.print("| ");
+					System.out.flush();
+					line+=in.nextLine();
+				}
+				System.out.print(console.evaluate());
+				System.out.print("> ");
+				System.out.flush();
+			}
+		}else{
+			System.out.println("Use argument '--cli' if you prefer using command line");
+			JFrame f=new JFrame("Console");
+			f.add(new SwingConsole(console),BorderLayout.CENTER);
+			f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			f.setVisible(true);
+		}
 	}
 }

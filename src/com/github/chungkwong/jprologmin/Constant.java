@@ -19,6 +19,7 @@ import java.util.*;
 /**
  * Constant including atom,integer and floating point number
  * @author Chan Chung Kwong <1m02math@126.com>
+ * @param <T> the type of the value
  */
 public class Constant<T> extends Predication{
 	private final T val;

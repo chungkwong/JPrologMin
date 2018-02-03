@@ -19,10 +19,13 @@ import java.util.*;
 import java.util.stream.*;
 import javax.script.*;
 /**
- *
+ * Provides implementation for javax.script API
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class PrologEngineFactory implements ScriptEngineFactory{
+	/**
+	 * The factory
+	 */
 	public static final PrologEngineFactory INSTANCE=new PrologEngineFactory();
 	private static final String LANGUAGE="Prolog";
 	private static final String ENGINE="JPrologMin";

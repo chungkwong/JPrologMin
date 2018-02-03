@@ -19,7 +19,7 @@ import com.github.chungkwong.jprologmin.InstantiationException;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the predicate retract/1
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Retract extends ReexecutableBuildinPredicate{
@@ -32,7 +32,7 @@ public class Retract extends ReexecutableBuildinPredicate{
 	@Override
 	public boolean againActivate(List<Term> arguments,Processor exec,Variable var){
 		Term clause=arguments.get(0);
-		Term head=null,body=null;
+		Term head,body;
 		if(clause instanceof CompoundTerm&&((CompoundTerm)clause).getFunctor().equals(":-")
 				&&((CompoundTerm)clause).getArguments().size()==2){
 			head=((CompoundTerm)clause).getArguments().get(0);

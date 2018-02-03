@@ -19,7 +19,7 @@ import com.github.chungkwong.jprologmin.*;
 import java.math.*;
 import java.util.*;
 /**
- *
+ * Implementation of the predicate >/2
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Greater extends BuildinPredicate{

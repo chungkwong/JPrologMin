@@ -19,7 +19,7 @@ import com.github.chungkwong.jprologmin.InstantiationException;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the predicate once/1
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Once extends BuildinPredicate{

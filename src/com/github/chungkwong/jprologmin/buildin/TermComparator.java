@@ -19,10 +19,13 @@ import com.github.chungkwong.jprologmin.*;
 import java.io.*;
 import java.math.*;
 /**
- *
+ * Helper being used to compare Term
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class TermComparator implements java.util.Comparator<Term>,Serializable{
+	/**
+	 * The comparator being used to compare term
+	 */
 	public static final TermComparator INSTANCE=new TermComparator();
 	private static final int VARIABLE=0,REAL=1,INTEGER=2,ATOM=3,COMPOUND=4;
 	@Override

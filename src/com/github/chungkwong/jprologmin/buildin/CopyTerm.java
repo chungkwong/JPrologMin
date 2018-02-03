@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.buildin;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the predicate copy_term/2
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class CopyTerm extends BuildinPredicate{

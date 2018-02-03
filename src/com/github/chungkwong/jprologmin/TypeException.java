@@ -37,9 +37,15 @@ public class TypeException extends PrologException{
 	public String getMessage(){
 		return argument+" cannot be casted to "+expected;
 	}
+	/**
+	 * @return the expected type
+	 */
 	public String getExpected(){
 		return expected;
 	}
+	/**
+	 * @return the unexpected term
+	 */
 	public Term getArgument(){
 		return argument;
 	}

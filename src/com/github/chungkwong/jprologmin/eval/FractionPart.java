@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.eval;
 import com.github.chungkwong.jprologmin.*;
 import java.math.*;
 /**
- *
+ * Implementation of the operator float_fractional_part/1
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class FractionPart extends Evaluable{

@@ -17,7 +17,7 @@
 package com.github.chungkwong.jprologmin.eval;
 import java.util.*;
 /**
- *
+ * Registry for operators
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class EvaluableFunctorTable{
@@ -55,9 +55,18 @@ public class EvaluableFunctorTable{
 		addEvaluableFunctor(Truncate.INSTANCE);
 		addEvaluableFunctor(TruncateFloat.INSTANCE);
 	}
-	public static void addEvaluableFunctor(Evaluable functor){
-		table.put(functor.getFunctor(),functor);
+	/**
+	 * Register a operator
+	 * @param operator the operator
+	 */
+	public static void addEvaluableFunctor(Evaluable operator){
+		table.put(operator.getFunctor(),operator);
 	}
+	/**
+	 * Find a operator by it form
+	 * @param name the form
+	 * @return the operator
+	 */
 	public static Evaluable getEvaluableFunctor(EvaluableFunctor name){
 		return table.get(name);
 	}

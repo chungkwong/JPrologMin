@@ -36,15 +36,29 @@ public class DecoratedSubgoal implements Cloneable{
 	public String toString(){
 		return getActivator().toString();
 	}
+	/**
+	 * @return the activator
+	 */
 	public Predication getActivator(){
 		return activator;
 	}
+	/**
+	 * @return the cut parent
+	 */
 	public ExecutionState getCutparent(){
 		return cutparent;
 	}
+	/**
+	 * Set the activator
+	 * @param activator the new value
+	 */
 	public void setActivator(Predication activator){
 		this.activator=activator;
 	}
+	/**
+	 * Set the cut parent
+	 * @param cutparent the new one
+	 */
 	public void setCutparent(ExecutionState cutparent){
 		this.cutparent=cutparent;
 	}

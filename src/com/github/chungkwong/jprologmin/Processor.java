@@ -139,15 +139,27 @@ public class Processor{
 		stack.pop();
 		backtrack();
 	}
+	/**
+	 * @return current state
+	 */
 	public ExecutionState getCurrentState(){
 		return stack.peek();
 	}
+	/**
+	 * @return current DecoratedSubgoal
+	 */
 	public DecoratedSubgoal getCurrentDecoratedSubgoal(){
 		return stack.peek().getDecsglstk().peek();
 	}
+	/**
+	 * @return current activator
+	 */
 	public Predication getCurrentActivator(){
 		return stack.peek().getDecsglstk().peek().getActivator();
 	}
+	/**
+	 * @return current substitution
+	 */
 	public Substitution getCurrentSubst(){
 		return getStack().peek().getSubst();
 	}

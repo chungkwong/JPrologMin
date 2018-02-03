@@ -17,7 +17,7 @@
 package com.github.chungkwong.jprologmin;
 import java.util.*;
 /**
- * Operator
+ * Operator token
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Operator{
@@ -82,15 +82,27 @@ public class Operator{
 				throw new DomainException("operator_specifier",new Constant(specifier));
 		}
 	}
+	/**
+	 * @return the token
+	 */
 	public String getToken(){
 		return token;
 	}
+	/**
+	 * @return the priority
+	 */
 	public int getPriority(){
 		return priority;
 	}
+	/**
+	 * @return the syntax class
+	 */
 	public Class getCls(){
 		return cls;
 	}
+	/**
+	 * @return associativity
+	 */
 	public Associativity getAssociativity(){
 		return associativity;
 	}

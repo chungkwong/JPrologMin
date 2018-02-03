@@ -74,6 +74,9 @@ public class UserPredicate implements Procedure{
 	public Predicate getPredicate(){
 		return clauses.get(0).getHead().getPredicate();
 	}
+	/**
+	 * @return the clauses associated to this predicate
+	 */
 	public List<Clause> getClauses(){
 		return clauses;
 	}

@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.eval;
 import com.github.chungkwong.jprologmin.*;
 import java.math.*;
 /**
- *
+ * Implementation of the operator mod/2
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class Mod extends Evaluable{

@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.buildin;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the predicate asserta/1
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class AssertA extends BuildinPredicate{
@@ -27,7 +27,7 @@ public class AssertA extends BuildinPredicate{
 	@Override
 	public boolean activate(List<Term> arguments,Processor exec){
 		Term clause=arguments.get(0);
-		Clause toAdd=null;
+		Clause toAdd;
 		if(clause instanceof CompoundTerm&&((CompoundTerm)clause).getFunctor().equals(":-")
 				&&((CompoundTerm)clause).getArguments().size()==2){
 			toAdd=new Clause(((CompoundTerm)clause).getArguments().get(0).toHead()

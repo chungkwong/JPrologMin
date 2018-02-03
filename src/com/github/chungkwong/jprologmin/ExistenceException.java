@@ -47,9 +47,15 @@ public class ExistenceException extends PrologException{
 	public Term getErrorTerm(){
 		return new CompoundTerm(FUNCTOR,new Constant(getType()),getArgument());
 	}
+	/**
+	 * @return the expected type
+	 */
 	public String getType(){
 		return type;
 	}
+	/**
+	 * @return the unexpected term
+	 */
 	public Term getArgument(){
 		return argument;
 	}

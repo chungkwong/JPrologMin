@@ -18,7 +18,7 @@ package com.github.chungkwong.jprologmin.buildin;
 import com.github.chungkwong.jprologmin.*;
 import java.util.*;
 /**
- *
+ * Implementation of the predicate compound/1
  * @author Chan Chung Kwong <1m02math@126.com>
  */
 public class IsCompound extends BuildinPredicate{
