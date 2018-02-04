@@ -84,7 +84,7 @@
 		<path id="ivy.lib.path">
 			<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
 		</path>
-		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>		
 	</target>
 	<target name="clean-ivy">
 		<delete dir="${ivy.jar.dir}"/>
@@ -99,7 +99,7 @@
 	<property name="jar" value="${deploy}/jprologmin.jar"/>
 	<property name="javadoc-jar" value="${deploy}/jprologmin-javadoc.jar"/>
 	<property name="sources-jar" value="${deploy}/jprologmin-sources.jar"/>
-	<target name="snapshot" depends="install-ivy,jar">
+	<target name="snapshot" depends="resolve,jar">
 		<mkdir dir="${deploy}"/>
 		<copy file="dist/JPrologMin.jar" tofile="${jar}"/>
 		<ivy:makepom ivyfile="ivy.xml" pomfile="${deploy}/pom.xml"/>
@@ -107,11 +107,13 @@
 						  revision="1.0-SNAPSHOT"
 						  overwrite="true" 
 						  publishivy="false" >
-			<artifacts pattern="${deploy}/[artifact].[ext]"/>
+			<artifacts pattern="${deploy}/[artifact](-[classifier]).[ext]"/>
+			<artifact name="pom" ext="xml" type="ivy" />
+			<artifact name="jprologmin" ext="jar" type="jar"/>
 		</ivy:publish>
 	</target>
 	
-	<target name="stage" depends="install-ivy,default">
+	<target name="stage" depends="resolve,default">
 		<mkdir dir="${deploy}"/>
 		<copy file="dist/JPrologMin.jar" tofile="${jar}"/>
 		<jar jarfile="${sources-jar}">
