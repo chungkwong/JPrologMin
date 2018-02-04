@@ -70,9 +70,7 @@
     properties which you can use, check the target you are overriding in the
     nbproject/build-impl.xml file. 
 
-    -->	
-	<target name="-pre-compile" depends="resolve">
-	</target>
+    -->
 	<property name="ivy.install.version" value="2.4.0"/>
 	<property name="ivy.jar.dir" value="ivy"/>
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
@@ -106,7 +104,7 @@
 		<copy file="dist/JPrologMin.jar" tofile="${jar}"/>
 		<ivy:makepom ivyfile="ivy.xml" pomfile="${deploy}/pom.xml"/>
 		<ivy:publish resolver="nexus-snapshots"
-						  revision="1.0"
+						  revision="1.0-SNAPSHOT"
 						  overwrite="true" 
 						  publishivy="false" >
 			<artifacts pattern="${deploy}/[artifact].[ext]"/>

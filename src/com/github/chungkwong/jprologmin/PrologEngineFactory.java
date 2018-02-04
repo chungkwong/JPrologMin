@@ -88,7 +88,7 @@ public class PrologEngineFactory implements ScriptEngineFactory{
 		return Arrays.stream(statements).collect(Collectors.joining());
 	}
 	@Override
-	public ScriptEngine getScriptEngine(){
+	public PrologEngine getScriptEngine(){
 		return new PrologEngine();
 	}
 }

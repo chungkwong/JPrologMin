@@ -115,6 +115,12 @@ public class Substitution{
 		buf.append('}');
 		return buf.toString();
 	}
+	/**
+	 * @return the set of assigned variables
+	 */
+	public Set<Variable> getAssignedVariables(){
+		return assignment.keySet();
+	}
 	static class CopyOnWriteSubstitution extends Substitution{
 		private boolean changed=false;
 		public CopyOnWriteSubstitution(Substitution parent){

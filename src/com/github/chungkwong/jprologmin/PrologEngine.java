@@ -55,6 +55,12 @@ public class PrologEngine extends AbstractScriptEngine{
 	public ScriptEngineFactory getFactory(){
 		return PrologEngineFactory.INSTANCE;
 	}
+	/**
+	 * @return the Prolog database
+	 */
+	public Database getDatabase(){
+		return db;
+	}
 	private static class SubstitutionIterator implements Iterator<Substitution>{
 		private final Processor exec;
 		private Substitution cache;
